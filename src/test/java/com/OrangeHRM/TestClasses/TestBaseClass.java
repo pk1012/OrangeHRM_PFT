@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -23,7 +24,7 @@ public class TestBaseClass
 	{
 		WebDriverManager.chromedriver().driverVersion("121").setup();
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--start-maximized", "--incognito", "--lang=hin");
+		options.addArguments("--start-maximized");
 		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
@@ -47,7 +48,7 @@ public class TestBaseClass
 		lo.clickOnLoginBtn();
 	}
 	
-	@AfterMethod
+	@AfterClass
 	public void tearDown()
 	{
 		driver.quit();
